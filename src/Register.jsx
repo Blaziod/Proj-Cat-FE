@@ -1,19 +1,34 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { Multiselect } from 'multiselect-react-dropdown';
 
 export const Register = (props) => {
-    const [email, setEmail] = useState('');
+
+    const data = [
+        { Department: 'Computer Science', id: 1 },
+        { Department: 'Electrical Engineering', id: 2 }
+    ]
+
+    const sem = [
+        { Semester: "One", id: 1 },
+        { Semester: 'Two', id: 2 },
+        { Semester: 'Three', id: 1 },
+        { Semester: 'Four', id: 2 }
+
+    ]
+
     const [pass, setPass] = useState('');
     const [name, setName] = useState('');
     const [matric, setMatric] = useState('');
     const [phone, setPhone] = useState('');
-    const [dept, setDept] = useState('');
-    const [sem, setSem] = useState('');
+   
 
+    const [options] = useState(data);
+    const [ooptions] = useState(sem);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(email);
+        console.log(matric);
     }
 
 
@@ -36,26 +51,23 @@ export const Register = (props) => {
                         <input className="register-input" value={phone} onChange={(e) => setPhone(e.target.value)} type="phone" id="phone" placeholder="phone number" phone="phone" />
                     </div>
                     <div className="input-group">
-                        <label htmlFor="dept"> Department </label>
-                        <input className="register-input" value={dept} onChange={(e) => setDept(e.target.value)} type="dept" id="dept" placeholder="Department" dept="dept" />
-                    </div>
-                    <div className="input-group">
-                        <label htmlFor="sem"> Semester </label>
-                        <input className="register-input" value={sem} onChange={(e) => setSem(e.target.value)} type="sem" id="sem" placeholder="Semester" sem="sem" />
-                    </div>
-                    <div className="input-group">
-                        <label htmlFor="email"> Email </label>
-                        <input className="register-input" value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="youremail@gmail.com" id="email" name="email" />
+                        <label htmlFor='Department'> Select your department</label>
+                        <Multiselect singleSelect={true} style={{ multiselectContainer: { width: 200, height: 90, color: 'black' } }} options={options} displayValue={'Department'} className="register-input" />
                     </div>
                     <div className="input-group">
                         <label htmlFor="password"> Password </label>
                         <input className="register-input" value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="********" id="password" name="password" />
                     </div>
+
+                    <div className="input-group">
+                        <label htmlFor='Semester'> Select your semester</label>
+                        <Multiselect singleSelect={true} style={{ multiselectContainer: { width: 200, height: 90, color: 'black' } }} options={ooptions} displayValue={'Semester'} className="register-input" />
+                    </div>
                 </div>
 
                 <button className="register-submit-btn" type="submit">Register</button>
             </form>
-            <Link to="/Login"><button className="link-btn" onClick={() => props.onFormSwitch('Login')} >Already have an account? Login here.</button></Link>
+            <Link to="/Login"><button className="link-btn">Already have an account? Login here</button></Link>
         </div>
 
     )
