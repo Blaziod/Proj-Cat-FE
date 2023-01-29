@@ -22,9 +22,7 @@ const handleSubmit = (e) =>  {
                 <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder= "********" id="password" name="password"/>
                 <Link to="/Pages/Home"><button type="submit">Log In</button></Link>
             </form>
-            <Link to="/Register"><button className="link-btn">Don't have an account? Register here.</button></Link>
+            <Link to="/LecturerLogin"><button className="link-btn">Don't have an account? Register here.</button></Link>
          </div>
-    )
-
-    
+    )    
     }

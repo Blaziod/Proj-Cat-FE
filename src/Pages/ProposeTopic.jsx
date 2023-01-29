@@ -34,7 +34,7 @@ export const ProposeTopic = (props) => {
     }
 
     return (
-        <div className="topics-auth-container">
+        <div className="auth-form-container">
 
             <h2>Project Topic Area</h2>
             <form className="login-form" onSubmit={handleSubmit}>
@@ -50,18 +50,18 @@ export const ProposeTopic = (props) => {
 
                 <label htmlFor="topic3"> Project Topic 3</label>
                 <input value={topic3} onChange={(e) => setTopic3(e.target.value)} type="topic3" placeholder="Type in your first project topic" id="topic3" name="topic3" />
-              
+
                 <div className="form-grid-layout">
                     <div className="input-group">
 
                         <label htmlFor='Department'> Select your department</label>
-                        <Multiselect options={options} displayValue={'Department'} className="register-input" />
+                        <Multiselect singleSelect={true} style={{ multiselectContainer: { width: 200, height: 90, color: 'black' } }} options={options} displayValue={'Department'} className="register-input" />
 
                     </div>
                     <div className="input-group">
 
                         <label htmlFor='Semester'> Select your semester</label>
-                        <Multiselect options={ooptions} displayValue={'Semester'} className="register-input" />
+                        <Multiselect singleSelect={true} style={{ multiselectContainer: { width: 200, height: 90, color: 'black' } }} options={ooptions} displayValue={'Semester'} className="register-input" />
                     </div>
                 </div>
                 <Link to="/"><button className="register-submit-btn" type="submit">Submit</button></Link>
