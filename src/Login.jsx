@@ -14,7 +14,7 @@ const handleSubmit = (e) =>  {
 
     return (
         <div className="auth-form-container">
-            <h2>Student Login</h2>
+            <h2 className="app-container">Student Login</h2>
             <form className="login-form"onSubmit= {handleSubmit}>
                 <label htmlFor="matric"> Matric Number </label>
                 <input value={matric} onChange={(e) => setMatric(e.target.value)} type="matric" id="matric" placeholder="matric number" name="matric" />

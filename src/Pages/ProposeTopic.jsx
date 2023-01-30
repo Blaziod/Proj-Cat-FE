@@ -38,7 +38,7 @@ export const ProposeTopic = (props) => {
     return (
         <div className="auth-form-container">
 
-            <h2>Project Topic Area</h2>
+            <h2 className="app-container">Project Topic Area</h2>
             <form className="login-form" onSubmit={handleSubmit}>
                 <label htmlFor="matric"> Matric Number </label>
                 <input value={matric} onChange={(e) => setMatric(e.target.value)} type="matric" placeholder="cp/program/department/number" id="matric" name="matric" />

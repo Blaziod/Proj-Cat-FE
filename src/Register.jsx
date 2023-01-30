@@ -35,7 +35,7 @@ export const Register = (props) => {
     return (
 
         <div className="auth-form-container-register">
-            <h2>Student Register</h2>
+            <h2 className="app-container">Student Register</h2>
             <form className="register-form" onSubmit={handleSubmit}>
                 <div className="form-grid-layout">
                     <div className="input-group">

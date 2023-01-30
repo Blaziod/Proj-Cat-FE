@@ -5,7 +5,7 @@ const Home = () => {
   return (
 
     <div className="auth-form-container">
-      <h1>Home</h1>
+      <h1 className="app-container">Home</h1>
 
       <Link to="/Login"><button>STUDENT LOGIN</button></Link> <br></br> <p></p>
       <Link to="/LecturerLogin"><button>LECTURER LOGIN</button></Link>
