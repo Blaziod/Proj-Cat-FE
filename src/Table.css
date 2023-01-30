@@ -4,6 +4,10 @@
     gap: 10px;
     padding: 1rem;
     align-items: center;
+    /* padding: 10rem; */
+    border: 5px solid white;
+    border-radius: 10px;
+    margin: 1rem;
   }
   
   table {
@@ -24,7 +28,7 @@
   }
   
   td {
-    background-color: rgb(247, 6, 6);
+    background-color: rgb(27, 2, 95);
   }
   
   form {

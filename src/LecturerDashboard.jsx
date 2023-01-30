@@ -6,7 +6,7 @@ const LecturerDashboard = () => {
     const [contacts, setContacts] = useState(data);
     return (
         <div className="app-container">
-            <h2>Lecturer Dashboard</h2>
+            <h2 className="app-container">Lecturer Dashboard</h2>
             <table>
                 <thead>
                     <th>S/NO</th>
@@ -15,6 +15,7 @@ const LecturerDashboard = () => {
                     <th>Semester</th>
                     <th>Department</th>
                     <th>Project Topic</th>
+                    <th>Actions</th>
 
 
                 </thead>
@@ -29,6 +30,10 @@ const LecturerDashboard = () => {
                             <td>{contact.Topic1} <p>
                                 </p>  {contact.Topic2} <p/>
                                {contact.Topic3} </td>
+                            <td><button> Accept </button><p></p>
+                            <button> Reject </button></td>
+                        
+                            
 
                         </tr>
                     ))}

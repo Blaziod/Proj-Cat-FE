@@ -11,8 +11,10 @@ export const ProposeTopic = (props) => {
 
 
     const data = [
+
         { Department: 'Computer Science', id: 1 },
-        { Department: 'Electrical Engineering', id: 2 }
+        { Department: 'Electrical Engineering', id: 2 }, 
+        { Department: 'Computer Engineering', id: 3 }
     ]
 
     const sem = [
@@ -24,7 +26,7 @@ export const ProposeTopic = (props) => {
     ]
 
     const [options] = useState(data);
-    const [ooptions] = useState(sem);
+    const [option2] = useState(sem);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -61,7 +63,7 @@ export const ProposeTopic = (props) => {
                     <div className="input-group">
 
                         <label htmlFor='Semester'> Select your semester</label>
-                        <Multiselect singleSelect={true} style={{ multiselectContainer: { width: 200, height: 90, color: 'black' } }} options={ooptions} displayValue={'Semester'} className="register-input" />
+                        <Multiselect singleSelect={true} style={{ multiselectContainer: { width: 200, height: 90, color: 'black' } }} options={option2} displayValue={'Semester'} className="register-input" />
                     </div>
                 </div>
                 <Link to="/"><button className="register-submit-btn" type="submit">Submit</button></Link>
