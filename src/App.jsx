@@ -8,11 +8,13 @@ import { LecturerRegister } from "./LecturerRegister";
 import  Layout  from "./Pages/Layout";
 import  Home  from "./Pages/Home";
 import NoPage  from "./Pages/NoPage";
+import LecturerDashboard  from "./LecturerDashboard";
 import { LecturerLogin } from "./LecturerLogin";
 
 
 
 function App() {
+
   const [currentForm, setCurrentForm] = useState('Login');
 
   const toggleForm = (formName) => {
@@ -35,6 +37,7 @@ function App() {
         <Route path="Register" element={<Register />} />
         <Route path="LecturerRegister" element={<LecturerRegister />} />
         <Route path="LecturerLogin" element={<LecturerLogin />} />
+        <Route path="LecturerDashboard" element={<LecturerDashboard />} />
         <Route path="*" element={<NoPage />} />
   
          

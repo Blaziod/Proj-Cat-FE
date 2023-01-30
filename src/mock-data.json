@@ -1,0 +1,57 @@
+[
+    {
+      "id": 1,
+      "FullName": "Jenny Chan",
+      "Topic1": "Create a website",
+      "Topic2": "Design an AI",
+      "Topic3": "Design an AI",
+      "Matric": "CP/ND/CSC/FT/21391",
+      "Sem": "One",
+      "Dept": "Computer Science"
+    },
+  
+    {
+      "id": 2,
+      "FullName": "Benjamin Okafor",
+      "Topic1": "create an app with a food ordering functionality",
+      "Topic2": "Design an AI",
+      "Topic3": "Design an AI",
+      "Matric": "CP/ND/CSC/FT/21401",
+      "Sem": "Two",
+      "Dept": "Computer Science"
+    },
+  
+    {
+      "id": 3,
+      "FullName": "Princestan Uwoh",
+      "Topic1": "Design an AI",
+      "Topic2": "Design an AI",
+      "Topic3": "Design an AI",
+      "Matric": "CP/ND/CSC/FT/21390",
+      "Sem": "Three",
+      "Dept": "Computer Science"
+    },
+  
+    {
+      "id": 4,
+      "FullName": "Joshua Chibuike",
+      "Topic1": "Integrate an API into the school portal",
+      "Topic2": "Design an AI",
+      "Topic3": "Design an AI",
+      "Matric": "CP/ND/CSC/FT/21432",
+      "Sem": "Four",
+      "Dept": "Electrical Engineering"
+    },
+  
+    {
+      "id": 5,
+      "FullName": "Jenny Chan",
+      "Topic1": "Design a portfolio website",
+      "Topic2": "Design an AI",
+      "Topic3": "Design an AI",
+      "Matric": "CP/ND/CSC/FT/21035",
+      "Sem": "Three",
+      "Dept": "Computer Engineering"
+    }
+  
+  ]
