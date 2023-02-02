@@ -10,6 +10,8 @@ import  Home  from "./Pages/Home";
 import NoPage  from "./Pages/NoPage";
 import LecturerDashboard  from "./LecturerDashboard";
 import { LecturerLogin } from "./LecturerLogin";
+import ApiTrial from "./Pages/ApiTrial";
+import PostApi from "./Pages/PostApi";
 
 
 
@@ -27,9 +29,13 @@ function App() {
       {
         // currentForm === "Login" ? <Login onFormSwitch={toggleForm} /> : <Register onFormSwitch={toggleForm} />
        
+     
+
         <BrowserRouter>
 
+
         <Routes>
+      
         <Route path="/" element={<Layout />}></Route>
         <Route index element={<Home />} />
         <Route path="ProposeTopic" element={<ProposeTopic />} />
@@ -38,6 +44,7 @@ function App() {
         <Route path="LecturerRegister" element={<LecturerRegister />} />
         <Route path="LecturerLogin" element={<LecturerLogin />} />
         <Route path="LecturerDashboard" element={<LecturerDashboard />} />
+        <Route path="PostApi" element={<PostApi />} />
         <Route path="*" element={<NoPage />} />
   
          
