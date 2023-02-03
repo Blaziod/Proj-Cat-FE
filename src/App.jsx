@@ -45,6 +45,7 @@ function App() {
         <Route path="LecturerLogin" element={<LecturerLogin />} />
         <Route path="LecturerDashboard" element={<LecturerDashboard />} />
         <Route path="PostApi" element={<PostApi />} />
+        <Route path="ApiTrial" element={<ApiTrial />} />
         <Route path="*" element={<NoPage />} />
   
          

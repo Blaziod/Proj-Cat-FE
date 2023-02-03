@@ -1,11 +1,74 @@
 import React, { Component } from "react";
-import ApiTrial from "./ApiTrial";
+import axios from "axios";
 
 class PostApi extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            userId: '',
+            title: '',
+            body: '',
+            // password: ''
+        }
+    }
+
+    changeHandler = (e) => {
+        this.setState({ [e.target.name]: e.target.value })
+    }
+
+    submitHandler = (e) => {
+        e.preventDefault()
+        console.log(this.state)
+        axios.post('https://jsonplaceholder.typicode.com/posts', this.state)
+        .then(response =>{
+            console.log(response)
+        })
+        .catch(error => {
+            console.log(error)
+        })
+
+    }
+
     render() {
+        const { userId, title, body, password } = this.state
         return (
-            <div className="PostApi">
-                <ApiTrial />
+            <div>
+                <form onSubmit={this.submitHandler}>
+                    <div>
+                        <input
+                            type="name"
+                            name="userId"
+                            value={userId}
+                            onChange={this.changeHandler}
+                        />
+                    </div>
+                    <div>
+                        <input
+                            ype="matric"
+                            name="title"
+                            value={title}
+                            onChange={this.changeHandler}
+                        />
+                    </div>
+                    <div>
+                        <input
+                            type="phone"
+                            name="body"
+                            value={body}
+                            onChange={this.changeHandler}
+                        />
+                    </div>
+                    {/* <div>
+                        <input
+                            type="password"
+                            name="password"
+                            value={password}
+                            onChange={this.changeHandler}
+                        />
+                    </div> */}
+                    <button type="submit">Submit</button>
+                </form>
             </div>
         )
     }

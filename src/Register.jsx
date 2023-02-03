@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Multiselect } from 'multiselect-react-dropdown';
+import axios from "axios";
 
 export const Register = (props) => {
 
     const data = [
-        { Department: 'Computer Science', id: 1 },
-        { Department: 'Electrical Engineering', id: 2 }
+        { departmentName: 'Computer Science', id: 1 },
+        { departmentName: 'Electrical Engineering', id: 2 }
     ]
 
     const sem = [
@@ -17,18 +18,40 @@ export const Register = (props) => {
 
     ]
 
-    const [pass, setPass] = useState('');
-    const [name, setName] = useState('');
-    const [matric, setMatric] = useState('');
-    const [phone, setPhone] = useState('');
-   
+    const [password, setPassword] = useState('');
+    const [fullName, setFullName] = useState('');
+    const [matricNo, setMatricNo] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [semester, setSemester] = useState(1,2,3,4,5,6,7,8);
+    const [departmentName, setdepartmentName] = useState('');
+
 
     const [options] = useState(data);
     const [ooptions] = useState(sem);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(matric);
+        console.log(matricNo, password, fullName, phoneNumber, data, sem);
+
+        axios.post('https://project-cataloging.onrender.com/api/auth/register/student',
+        {
+            password,
+            fullName,
+            matricNo,
+            phoneNumber,
+            departmentName,
+            semester
+        }
+       
+        )
+
+            .then(response => {
+                console.log(response)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+
     }
 
 
@@ -39,30 +62,38 @@ export const Register = (props) => {
             <form className="register-form" onSubmit={handleSubmit}>
                 <div className="form-grid-layout">
                     <div className="input-group">
-                        <label htmlFor="name"> Full Name </label>
-                        <input className="register-input" value={name} onChange={(e) => setName(e.target.value)} type="name" id="name" placeholder="full name" name="name" />
+                        <label htmlFor="fullName"> Full Name </label>
+                        <input className="register-input" value={fullName} onChange={(e) => setFullName(e.target.value)} type="string" id="fullName" placeholder="full name" name="fullName" />
                     </div>
                     <div className="input-group">
-                        <label htmlFor="matric"> Matric Number </label>
-                        <input className="register-input" value={matric} onChange={(e) => setMatric(e.target.value)} type="matric" id="matric" placeholder="matric number" matric="matric" />
+                        <label htmlFor="matricNo"> Matric Number </label>
+                        <input className="register-input" value={matricNo} onChange={(e) => setMatricNo(e.target.value)} type="string" id="matricNo" placeholder="matric number" name="matricNo" />
                     </div>
                     <div className="input-group">
-                        <label htmlFor="phone"> Phone Number </label>
-                        <input className="register-input" value={phone} onChange={(e) => setPhone(e.target.value)} type="phone" id="phone" placeholder="phone number" phone="phone" />
+                        <label htmlFor="phoneNumber"> Phone Number </label>
+                        <input className="register-input" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} type="string" id="phoneNumber" placeholder="phone number" name="phoneNumber" />
                     </div>
-                    <div className="input-group">
-                        <label htmlFor='Department'> Select your department</label>
-                        <Multiselect singleSelect={true} style={{ multiselectContainer: { width: 200, height: 90, color: 'black' } }} options={options} displayValue={'Department'} className="register-input" />
-                    </div>
+                    {/* <div className="input-group">
+                        <label htmlFor='departmentName'> Select your department</label>
+                        <Multiselect singleSelect={true} style={{ multiselectContainer: { width: 200, height: 90, color: 'black' } }} options={options} displayValue={'departmentName'} className="register-input" id="departmentName" departmentName="departmentName" type="string" />
+                    </div> */}
                     <div className="input-group">
                         <label htmlFor="password"> Password </label>
-                        <input className="register-input" value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="********" id="password" name="password" />
+                        <input className="register-input" value={password} onChange={(e) => setPassword(e.target.value)} type="string" placeholder="********" id="password" name="password" />
+                    </div>
+                    <div className="input-group">
+                        <label htmlFor="departmentName"> Passwordafdwe </label>
+                        <input className="register-input" value={departmentName} onChange={(e) => setdepartmentName(e.target.value)} type="string" placeholder="********" id="departmentName" name="departmentName" />
+                    </div>
+                    <div className="input-group">
+                        <label htmlFor="semester"> Semester </label>
+                        <input className="register-input" value={semester} onChange={(e) => setSemester(e.target.value)} type="number" placeholder="********" id="semester" name="semester" />
                     </div>
 
-                    <div className="input-group">
-                        <label htmlFor='Semester'> Select your semester</label>
-                        <Multiselect singleSelect={true} style={{ multiselectContainer: { width: 200, height: 90, color: 'black' } }} options={ooptions} displayValue={'Semester'} className="register-input" />
-                    </div>
+                    {/* <div className="input-group">
+                        <label htmlFor='semester'> Select your semester</label>
+                        <Multiselect singleSelect={true} style={{ multiselectContainer: { width: 200, height: 90, color: 'black' } }} options={ooptions} displayValue={'semester'} className="register-input" id="semester" type="number" />
+                    </div> */}
                 </div>
 
                 <button className="register-submit-btn" type="submit">Register</button>
