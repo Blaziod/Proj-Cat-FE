@@ -7,19 +7,21 @@ export const Login = (props) => {
   const [password, setPassword] = useState("");
   const [matricNo, setMatricNo] = useState("");
 
+  let navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(password, matricNo);
 
     axios
-      .post("https://project-cataloging.onrender.com/api/auth/login/student", {
+      .post("https://project-catalog.onrender.com/api/auth/login/student", {
         matricNo,
         password,
       })
 
       .then((response) => {
         console.log(response);
-        window.location.replace("/ProposeTopic");
+        navigate("/ProposeTopic");
         return response.data.message;
       })
 
@@ -27,8 +29,6 @@ export const Login = (props) => {
         console.log(error);
       });
   };
-
-  let navigate = useNavigate();
 
   return (
     <div className="auth-form-container">

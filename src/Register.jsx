@@ -40,17 +40,14 @@ export const Register = (props) => {
     console.log(matricNo, password, fullName, phoneNumber, data, sem);
 
     axios
-      .post(
-        "https://project-cataloging.onrender.com/api/auth/register/student",
-        {
-          password,
-          fullName,
-          matricNo,
-          phoneNumber,
-          departmentName,
-          semester,
-        }
-      )
+      .post("https://project-catalog.onrender.com/api/auth/register/student", {
+        password,
+        fullName,
+        matricNo,
+        phoneNumber,
+        departmentName,
+        semester,
+      })
 
       .then((response) => {
         console.log(response);
