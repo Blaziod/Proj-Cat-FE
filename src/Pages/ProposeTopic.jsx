@@ -4,33 +4,18 @@ import { Link } from "react-router-dom";
 
 
 export const ProposeTopic = (props) => {
-    const [matric, setMatric] = useState('');
+   
     const [topic1, setTopic1] = useState('');
     const [topic2, setTopic2] = useState('');
     const [topic3, setTopic3] = useState('');
+    const [topics, setTopics] = useState([]);
 
 
-    const data = [
-
-        { Department: 'Computer Science', id: 1 },
-        { Department: 'Electrical Engineering', id: 2 }, 
-        { Department: 'Computer Engineering', id: 3 }
-    ]
-
-    const sem = [
-        { Semester: "One", id: 1 },
-        { Semester: 'Two', id: 2 },
-        { Semester: 'Three', id: 1 },
-        { Semester: 'Four', id: 2 }
-
-    ]
-
-    const [options] = useState(data);
-    const [option2] = useState(sem);
+  
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(matric);
+        console.log(matric, topics);
 
 
     }
@@ -40,32 +25,19 @@ export const ProposeTopic = (props) => {
 
             <h2 className="app-container">Project Topic Area</h2>
             <form className="login-form" onSubmit={handleSubmit}>
-                <label htmlFor="matric"> Matric Number </label>
-                <input value={matric} onChange={(e) => setMatric(e.target.value)} type="matric" placeholder="cp/program/department/number" id="matric" name="matric" />
+                
 
                 <label htmlFor="topic1"> Project Topic 1</label>
-                <input value={topic1} onChange={(e) => setTopic1(e.target.value)} type="topic1" placeholder="Type in your first project topic" id="topic1" name="topic1" />
+                <input value={topics} onChange={(e) => setTopics(e.target.value)} type="topic1" placeholder="Type in your first project topic" id="topic1" name="topic1" />
 
                 <label htmlFor="topic2"> Project Topic 2</label>
-                <input value={topic2} onChange={(e) => setTopic2(e.target.value)} type="topic2" placeholder="Type in your first project topic" id="topic2" name="topic2" />
-                {/* <input value={topic} onChange={(e) => setTopic(e.target.value)} type="topic" placeholder="Type in your second project topic" id="topic" name="topic" /> */}
+                <input value={topics} onChange={(e) => setTopics(e.target.value)} type="topic2" placeholder="Type in your second project topic" id="topic2" name="topic2" />
+              
 
                 <label htmlFor="topic3"> Project Topic 3</label>
-                <input value={topic3} onChange={(e) => setTopic3(e.target.value)} type="topic3" placeholder="Type in your first project topic" id="topic3" name="topic3" />
+                <input value={topics} onChange={(e) => setTopics(e.target.value)} type="topic3" placeholder="Type in your third project topic" id="topic3" name="topic3" />
 
-                <div className="form-grid-layout">
-                    <div className="input-group">
-
-                        <label htmlFor='Department'> Select your department</label>
-                        <Multiselect singleSelect={true} style={{ multiselectContainer: { width: 200, height: 90, color: 'black' } }} options={options} displayValue={'Department'} className="register-input" />
-
-                    </div>
-                    <div className="input-group">
-
-                        <label htmlFor='Semester'> Select your semester</label>
-                        <Multiselect singleSelect={true} style={{ multiselectContainer: { width: 200, height: 90, color: 'black' } }} options={option2} displayValue={'Semester'} className="register-input" />
-                    </div>
-                </div>
+             
                 <Link to="/"><button className="register-submit-btn" type="submit">Submit</button></Link>
             </form>
 

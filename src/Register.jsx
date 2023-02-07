@@ -4,12 +4,15 @@ import { Multiselect } from "multiselect-react-dropdown";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 export const Register = (props) => {
   const data = [
     { departmentName: "Computer Science", id: 1 },
     { departmentName: "Electrical Engineering", id: 2 },
   ];
+
+  let navigate = useNavigate();
 
   const sem = [
     { Semester: "One", id: 1 },
@@ -51,7 +54,7 @@ export const Register = (props) => {
 
       .then((response) => {
         console.log(response);
-        window.location.replace("/Login");
+        navigate("/Login");
         return response.data.message;
       })
       .catch((error) => {

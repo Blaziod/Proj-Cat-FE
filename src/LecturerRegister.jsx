@@ -1,17 +1,37 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 export const LecturerRegister = (props) => {
     const [email, setEmail] = useState('');
-    const [pass, setPass] = useState('');
-    const [name, setName] = useState('');
+    const [password, setPassword] = useState('');
+    const [fullName, setFullName] = useState('');
   
 
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(email);
-    }
+        console.log(email, password, fullName );
+
+        axios
+        .post("https://project-catalog.onrender.com/api/auth/register/lecturer", {
+          password,
+          fullName,
+          email,
+        //   departmentName,
+          
+        })
+    
+        .then((response) => {
+          console.log(response);
+         
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+
+   
 
 
     return (
@@ -21,8 +41,8 @@ export const LecturerRegister = (props) => {
             <form className="register-form" onSubmit={handleSubmit}>
                 <div className="form-grid-layout">
                     <div className="input-group">
-                        <label htmlFor="name"> Full Name </label>
-                        <input className="register-input" value={name} onChange={(e) => setName(e.target.value)} type="name" id="name" placeholder="full name" name="name" />
+                        <label htmlFor="fullName"> Full Name </label>
+                        <input className="register-input" value={fullName} onChange={(e) => setFullName(e.target.value)} type="name" id="name" placeholder="full name" name="name" />
                     </div>
                 
                    
@@ -32,7 +52,7 @@ export const LecturerRegister = (props) => {
                     </div>
                     <div className="input-group">
                         <label htmlFor="password"> Password </label>
-                        <input className="register-input" value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="********" id="password" name="password" />
+                        <input className="register-input" value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="********" id="password" name="password" />
                     </div>
                 </div>
 
