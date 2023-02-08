@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const Login = (props) => {
   const [password, setPassword] = useState("");
@@ -21,12 +22,14 @@ export const Login = (props) => {
 
       .then((response) => {
         console.log(response);
+        toast(response.data.message);
         navigate("/ProposeTopic");
         return response.data.message;
       })
 
       .catch((error) => {
         console.log(error);
+        toast(error.response.data.message);
       });
   };
 

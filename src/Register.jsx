@@ -2,14 +2,17 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Multiselect } from "multiselect-react-dropdown";
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
+
+import { useNavigate } from "react-router-dom";
 
 export const Register = (props) => {
   const data = [
     { departmentName: "Computer Science", id: 1 },
     { departmentName: "Electrical Engineering", id: 2 },
   ];
+
+  let navigate = useNavigate();
 
   const sem = [
     { Semester: "One", id: 1 },
@@ -24,8 +27,6 @@ export const Register = (props) => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [semester, setSemester] = useState(1);
   const [departmentName, setDepartmentName] = useState("");
-
-  const notify = () => toast(response.data.message);
 
   const [options] = useState(data);
   const [ooptions] = useState(sem);
@@ -51,11 +52,12 @@ export const Register = (props) => {
 
       .then((response) => {
         console.log(response);
-        window.location.replace("/Login");
-        return response.data.message;
+        toast(response.data.message);
+        navigate("/Login");
       })
       .catch((error) => {
         console.log(error);
+        toast(error.response.data.message);
       });
   };
 
@@ -157,23 +159,9 @@ export const Register = (props) => {
           Register
         </button>
       </form>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
-      {/* Same as */}
-      <ToastContainer />
 
       <Link to="/Login">
-        <button onClick={notify} className="link-btn">
+        <button className="link-btn">
           Already have an account? Login here
         </button>
       </Link>

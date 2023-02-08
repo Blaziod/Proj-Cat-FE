@@ -12,6 +12,8 @@ import LecturerDashboard from "./LecturerDashboard";
 import { LecturerLogin } from "./LecturerLogin";
 import ApiTrial from "./Pages/ApiTrial";
 import PostApi from "./Pages/PostApi";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [currentForm, setCurrentForm] = useState("Login");
@@ -22,6 +24,19 @@ function App() {
 
   return (
     <div className="App">
+      <ToastContainer
+        position="top-left"
+        autoClose={6000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
+
       {
         <BrowserRouter>
           <Routes>
