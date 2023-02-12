@@ -8,6 +8,7 @@ const routes = {
 	lecturerDash: '/lecturerdashboard'
 }
 
+
 export const constants = {
 	routes
 }
