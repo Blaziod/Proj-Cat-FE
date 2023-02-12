@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import data from "./mock-data.json";
+import data from "../mock-data.json";
 import "./Table.css";
 
 const LecturerDashboard = () => {
