@@ -53,7 +53,7 @@ export const Register = (props) => {
       .then((response) => {
         console.log(response);
         toast(response.data.message);
-        navigate("/Login");
+        navigate("/Logn");
       })
       .catch((error) => {
         console.log(error);
