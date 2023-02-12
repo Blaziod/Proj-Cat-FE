@@ -177,7 +177,7 @@ export const Register = props => {
 				</button>
 			</form>
 
-			<Link to='/Login'>
+			<Link to={constants.routes.studentLogin}>
 				<button className='link-btn'>Already have an account? Login here</button>
 			</Link>
 		</div>

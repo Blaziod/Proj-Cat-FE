@@ -1,37 +1,37 @@
 import React, { useState } from 'react'
-import Login from '../components/Login'
-import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { constants } from '../utils'
-import apiservice from '../services/apiservice'
+import Login from '../components/Login'
 
-export default function LecturerLogin() {
+import api from '../services/apiservice'
+import { constants } from '../utils'
+
+export default function StudentLogin() {
 	const navigate = useNavigate()
 	const [isRequesting, setIsRequesting] = useState(false)
 
 	const handleSubmit = ({ id, authKey }) => {
 		setIsRequesting(true)
-		apiservice
-			.lecturerLogin({
-				email: id,
-				password: authKey
-			})
+
+		api.studentLogin({ matricNo: id, password: authKey })
 			.then(data => {
+				console.log(data)
 				toast(data.message)
-				navigate(constants.routes.lecturerDash)
+				navigate(constants.routes.proposeTopic)
 			})
-			.catch(errData => {
-				toast(errData.message)
+			.catch(errorData => {
+				console.log(errorData)
+				toast(errorData.message)
 			})
 			.finally(() => setIsRequesting(false))
 	}
+
 	return (
 		<Login
-			title='Lecturer Login'
+			title='Student Login'
 			handleSubmit={handleSubmit}
 			actionKeyDisabled={isRequesting}
-			idField={{ id: 'email', placeholder: 'john.doe@gmail.com', name: 'email', label: 'Email' }}
+			idField={{ id: 'matricNo', placeholder: 'aa/aa/aaa/11/11111', name: 'matricNo', label: 'Matric Number' }}
 			authField={{ id: 'password', placeholder: '**********', name: 'password', label: 'Password' }}
 		/>
 	)

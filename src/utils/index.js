@@ -1,8 +1,8 @@
 const routes = {
 	index: '/',
 	proposeTopic: '/proposetopic',
-	studentLogin: '/login',
-	studentRegister: '/register',
+	studentLogin: '/studentlogin',
+	studentRegister: '/studentregister',
 	lecturerRegister: '/lecturerregister',
 	lecturerLogin: '/lecturerlogin',
 	lecturerDash: '/lecturerdashboard'
