@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import data from "../mock-data.json";
-import "./Table.css";
+import "../Table.css";
 
 const LecturerDashboard = () => {
   const [contacts, setContacts] = useState(data);
