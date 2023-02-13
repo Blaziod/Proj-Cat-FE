@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom'
 import React from 'react'
 import { constants } from '../utils'
+import { useLoggedOut } from '../hooks/useProtected'
 
 const Home = () => {
+	useLoggedOut()
 	return (
 		<div className='auth-form-container'>
 			<h1 className='app-container'>Home</h1>

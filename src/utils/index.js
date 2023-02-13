@@ -8,7 +8,12 @@ const routes = {
 	lecturerDash: '/lecturerdashboard'
 }
 
+const userTypes = {
+	student: 'student',
+	lecturer: 'lecturer'
+}
 
 export const constants = {
-	routes
+	routes,
+	userTypes
 }

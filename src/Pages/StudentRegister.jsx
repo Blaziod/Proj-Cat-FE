@@ -38,7 +38,7 @@ function transformAndMergeErrorMessages(errs, altMessage = '') {
 	return <div>{altMessage}</div>
 }
 
-export const Register = props => {
+export default function Register(props) {
 	let navigate = useNavigate()
 
 	const [password, setPassword] = useState('')

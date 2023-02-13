@@ -4,8 +4,10 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import apiservice from '../services/apiservice'
 import { constants } from '../utils'
+import { useLoggedIn } from '../hooks/useProtected'
 
-export const ProposeTopic = props => {
+export default function ProposeTopic(props) {
+	useLoggedIn()
 	const [matricNo, setMatricNo] = useState('')
 	const [topic1, setTopic1] = useState('')
 	const [topic2, setTopic2] = useState('')
