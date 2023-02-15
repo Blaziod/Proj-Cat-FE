@@ -33,6 +33,7 @@ export default function LecturerLogin() {
 			actionKeyDisabled={isRequesting}
 			idField={{ id: 'email', placeholder: 'john.doe@gmail.com', name: 'email', label: 'Email' }}
 			authField={{ id: 'password', placeholder: '**********', name: 'password', label: 'Password' }}
+            registerLink={constants.routes.lecturerRegister}
 		/>
 	)
 }

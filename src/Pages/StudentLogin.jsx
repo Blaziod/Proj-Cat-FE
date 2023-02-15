@@ -39,6 +39,7 @@ export default function StudentLogin() {
 			actionKeyDisabled={isRequesting}
 			idField={{ id: 'matricNo', placeholder: 'aa/aa/aaa/11/11111', name: 'matricNo', label: 'Matric Number' }}
 			authField={{ id: 'password', placeholder: '**********', name: 'password', label: 'Password' }}
+            registerLink={constants.routes.studentRegister}
 		/>
 	)
 }

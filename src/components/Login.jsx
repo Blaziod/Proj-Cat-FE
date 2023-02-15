@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { constants } from '../utils'
 
-export default function Login({ title, handleSubmit, actionKeyDisabled, idField, authField }) {
+export default function Login({ title, handleSubmit, actionKeyDisabled, idField, authField, registerLink }) {
 	const [authKeyFieldValue, setAuthKeyFieldValue] = useState('')
 	const [idFieldValue, setIdFieldValue] = useState('')
 
@@ -40,7 +40,7 @@ export default function Login({ title, handleSubmit, actionKeyDisabled, idField,
 					Log In
 				</button>
 			</form>
-			<Link to={constants.routes.studentRegister}>
+			<Link to={registerLink}>
 				<button className='link-btn'>Don't have an account? Register here.</button>
 			</Link>
 		</div>
