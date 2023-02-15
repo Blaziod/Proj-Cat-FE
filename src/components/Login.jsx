@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { constants } from '../utils'
 
 export default function Login({ title, handleSubmit, actionKeyDisabled, idField, authField, registerLink }) {
 	const [authKeyFieldValue, setAuthKeyFieldValue] = useState('')
