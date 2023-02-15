@@ -40,7 +40,7 @@ export function useLoggedOut() {
 
 
 /**
- * A hook that allows performs a certain action is a predicate function returns `true`.
+ * A hook that allows performs a certain action if a predicate function returns `false`.
  * The action is executed before any items are visible on the page.
  * This should be used in pages where we want to place certain restrictions.
  * 
@@ -51,7 +51,7 @@ export function useProtectionCondition(condition, action) {
 	const [state] = useAppContext()
 
 	useLayoutEffect(() => {
-		if (condition(Object.create(null, { ...state }))) {
+		if (!condition(Object.create(null, { ...state }))) {
 			action()
 		}
 	}, [state])

@@ -4,7 +4,7 @@ import { Multiselect } from 'multiselect-react-dropdown'
 import { toast } from 'react-toastify'
 
 import { useNavigate } from 'react-router-dom'
-import apiservice from '../services/apiservice'
+import * as apiservice from '../services/apiservice'
 import { constants } from '../utils'
 
 const semesters = [

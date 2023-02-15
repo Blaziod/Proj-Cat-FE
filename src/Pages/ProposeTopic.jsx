@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import apiservice from '../services/apiservice'
+import * as apiservice from '../services/apiservice'
 import { constants } from '../utils'
 import { useLoggedIn } from '../hooks/useProtected'
 

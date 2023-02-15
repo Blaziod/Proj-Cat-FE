@@ -47,12 +47,6 @@ export async function rejectProjectTopics(data) {
 	return axiosInstance.post('/project/proposal/reject', data)
 }
 
-export default {
-	studentLogin,
-	studentRegister,
-	lecturerLogin,
-	lecturerRegister,
-	proposeTopics,
-	getProposalsPendingReview,
-	rejectProjectTopics
+export async function approveProjectTopic(data) {
+	return axiosInstance.post('/project/proposal/approve', data)
 }

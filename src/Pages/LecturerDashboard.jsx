@@ -1,23 +1,54 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import data from '../mock-data.json'
-import apiservice from '../services/apiservice'
+import { useAppContext } from '../components/AppContext'
+import { useLoggedIn, useProtectionCondition } from '../hooks/useProtected'
+import * as apiservice from '../services/apiservice'
 import '../Table.css'
+import { constants } from '../utils'
 
 const LecturerDashboard = () => {
+	// allow loggedin users
+	useLoggedIn()
+
+	const navigate = useNavigate()
+	// allow only lecturers
+	useProtectionCondition(
+		state => state.userType === constants.userTypes.lecturer,
+		() => navigate(constants.routes.index)
+	)
+
+	// get application state
+	const [_appState] = useAppContext()
+
 	const [proposals, setProposals] = useState([])
 	// a map of projectIds to the topic selected for that project
 	// this is used to track which topic has been selected
 	const [selectedTopics, setSelectedTopics] = useState({})
 
+	const removeProject = projectId => {
+		setProposals(prpsls => prpsls.filter(proj => proj.id !== projectId))
+		// remove entry from selectedTopics map
+		selectedTopics(selTops => {
+			delete selTops[projectId]
+			return selTops
+		})
+	}
+
 	const approveTopic = projectId => {
 		const selectedTopic = selectedTopics[projectId]
 
-		// get the lecturerId
-	}
-
-	const removeProject = projectId => {
-		setProposals(prpsls => prpsls.filter(proj => proj.id !== projectId))
+		apiservice
+			.approveProjectTopic({ topicId: selectedTopic, lecturerId: _appState.user.id })
+			.then(data => {
+				toast(data.message)
+				// remove the reviewed project from the table
+				removeProject(projectId)
+			})
+			.catch(errData => {
+				console.log(errData)
+				toast(errData.message)
+			})
 	}
 
 	const rejectAllTopics = projectId => {
@@ -39,6 +70,7 @@ const LecturerDashboard = () => {
 			setProposals(data.body)
 		})
 	}, [])
+
 	return (
 		<div className='app-container'>
 			<h2 className='app-container'>Lecturer Dashboard</h2>

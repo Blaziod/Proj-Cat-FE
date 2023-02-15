@@ -5,7 +5,7 @@ import { actions, useAppContext } from '../components/AppContext'
 import Login from '../components/Login'
 import { useLoggedOut } from '../hooks/useProtected'
 
-import api from '../services/apiservice'
+import * as api from '../services/apiservice'
 import { constants } from '../utils'
 
 export default function StudentLogin() {
