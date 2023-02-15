@@ -14,7 +14,7 @@ const LecturerDashboard = () => {
 	const navigate = useNavigate()
 	// allow only lecturers
 	useProtectionCondition(
-		state => state.userType === constants.userTypes.lecturer,
+		state => state.userType !== constants.userTypes.lecturer,
 		() => navigate(constants.routes.index)
 	)
 

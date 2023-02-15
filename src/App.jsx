@@ -23,11 +23,12 @@ import ContextProvider from './components/AppContext'
 // style imports
 import 'react-toastify/dist/ReactToastify.css'
 import './App.css'
+import Navbar from './components/Navbar'
 
 function App() {
 	return (
 		<ContextProvider>
-			<div className='App'>
+			<div className='applayout'>
 				<ToastContainer
 					position='top-left'
 					autoClose={6000}
@@ -42,21 +43,26 @@ function App() {
 				/>
 
 				{
-					<BrowserRouter>
-						<Routes>
-							<Route path={constants.routes.index} element={<Layout />} />
-							<Route index element={<Home />} />
-							<Route path={constants.routes.proposeTopic} element={<ProposeTopic />} />
-							<Route path={constants.routes.studentLogin} element={<Login />} />
-							<Route path={constants.routes.studentRegister} element={<Register />} />
-							<Route path={constants.routes.lecturerRegister} element={<LecturerRegister />} />
-							<Route path={constants.routes.lecturerLogin} element={<LecturerLogin />} />
-							<Route path={constants.routes.lecturerDash} element={<LecturerDashboard />} />
-							<Route path='PostApi' element={<PostApi />} />
-							<Route path='ApiTrial ' element={<ApiTrial />} />
-							<Route path='*' element={<Page404 />} />
-						</Routes>
-					</BrowserRouter>
+					<>
+						<BrowserRouter>
+							<Navbar />
+							<div className='app'>
+								<Routes>
+									<Route path={constants.routes.index} element={<Layout />} />
+									<Route index element={<Home />} />
+									<Route path={constants.routes.proposeTopic} element={<ProposeTopic />} />
+									<Route path={constants.routes.studentLogin} element={<Login />} />
+									<Route path={constants.routes.studentRegister} element={<Register />} />
+									<Route path={constants.routes.lecturerRegister} element={<LecturerRegister />} />
+									<Route path={constants.routes.lecturerLogin} element={<LecturerLogin />} />
+									<Route path={constants.routes.lecturerDash} element={<LecturerDashboard />} />
+									<Route path='PostApi' element={<PostApi />} />
+									<Route path='ApiTrial ' element={<ApiTrial />} />
+									<Route path='*' element={<Page404 />} />
+								</Routes>
+							</div>
+						</BrowserRouter>
+					</>
 				}
 			</div>
 		</ContextProvider>

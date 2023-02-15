@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { constants } from '../utils'
 import * as apiservice from '../services/apiservice'
+import { useLoggedOut } from '../hooks/useProtected'
+import { actions, useAppContext } from '../components/AppContext'
 
 export default function LecturerLogin() {
 	useLoggedOut()
@@ -23,7 +25,7 @@ export default function LecturerLogin() {
 				navigate(constants.routes.lecturerDash)
 			})
 			.catch(errData => {
-				console.log(errorData)
+				console.log(errData)
 				toast(errData.message)
 			})
 			.finally(() => setIsRequesting(false))

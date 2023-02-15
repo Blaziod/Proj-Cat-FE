@@ -1,4 +1,4 @@
-import { useLayoutEffect } from 'react'
+import { useEffect, useLayoutEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAppContext } from '../components/AppContext'
 import { constants } from '../utils'
@@ -19,7 +19,6 @@ export function useLoggedIn() {
 	}, [state])
 }
 
-
 /**
  * A hook that prevents access to logged in users.
  * This hook is used in pages that should only be visited by logged out users.
@@ -38,12 +37,11 @@ export function useLoggedOut() {
 	}, [state])
 }
 
-
 /**
- * A hook that allows performs a certain action if a predicate function returns `false`.
+ * A hook that allows performs a certain action if a predicate function returns `true`.
  * The action is executed before any items are visible on the page.
  * This should be used in pages where we want to place certain restrictions.
- * 
+ *
  * @param {(any) => boolean} predicate -  access condition
  * @param {() => void} action - action to be performed when condition passes
  */
@@ -51,10 +49,8 @@ export function useProtectionCondition(condition, action) {
 	const [state] = useAppContext()
 
 	useLayoutEffect(() => {
-		if (!condition(Object.create(null, { ...state }))) {
+		if (condition(state)) {
 			action()
 		}
 	}, [state])
 }
-
-
