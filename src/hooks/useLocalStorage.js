@@ -27,6 +27,7 @@ function asString(anyVal) {
  * @returns
  */
 export default function useLocalStorage(key, statefulValue) {
+	const [firstLoad, setFirstLoad] = useState(true)
 	const [_oldState] = useState(() => {
 		const itemInStorage = localStorage.getItem(key)
 		if (itemInStorage) {
@@ -48,7 +49,8 @@ export default function useLocalStorage(key, statefulValue) {
 	}
 
 	useEffect(() => {
-		updateLocalStorage()
+		if (!firstLoad) updateLocalStorage()
+		if (firstLoad) setFirstLoad(false)
 	}, [statefulValue])
 
 	return [_oldState, clearStorage]

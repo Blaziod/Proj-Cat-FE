@@ -8,6 +8,7 @@ import useLocalStorage from '../hooks/useLocalStorage'
 const initialState = {
 	isLoggedIn: false,
 	user: null,
+    // to track student project
 	userProject: null,
 	userType: null
 }
