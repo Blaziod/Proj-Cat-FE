@@ -62,7 +62,7 @@ export function useLoggedOut() {
 
 	useLayoutEffect(() => {
 		if (state.isLoggedIn && state.userType === constants.userTypes.student) {
-			navigate(constants.routes.proposeTopic) // TODO should navigate to dashboard
+			navigate(constants.routes.studentDash)
 		} else if (state.isLoggedIn && state.userType === constants.userTypes.lecturer) {
 			navigate(constants.routes.lecturerDash)
 		}
