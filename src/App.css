@@ -102,3 +102,57 @@ button {
 	padding: 0.25rem 1rem;
 	margin: 0;
 }
+
+.propose-topic-input-wrapper {
+	position: relative;
+	display: flex;
+}
+
+.propose-topic-input-wrapper input {
+	flex-grow: 1;
+}
+
+.propose-topic-input-wrapper-checking::after {
+	content: '';
+	width: 1rem;
+	height: 1rem;
+	border-radius: 100%;
+	border: 0.25rem solid black;
+	border-bottom-color: transparent;
+
+	position: absolute;
+	background-color: transparent;
+	top: 50%;
+	left: 100%;
+
+	transform: translate(0.5rem, -50%);
+	animation: rotation 1000ms infinite linear;
+}
+
+.invalid-topic,
+.valid-topic {
+	height: 2rem;
+	width: 2rem;
+	position: absolute;
+	top: 50%;
+	left: 100%;
+
+	transform: translate(0.5rem, -50%);
+}
+
+.invalid-topic {
+    color: red
+}
+
+.valid-topic {
+    color: rgb(0, 119, 255);
+}
+
+@keyframes rotation {
+	from {
+		transform: translate(0.5rem, -50%) rotate(0deg);
+	}
+	to {
+		transform: translate(0.5rem, -50%) rotate(360deg);
+	}
+}

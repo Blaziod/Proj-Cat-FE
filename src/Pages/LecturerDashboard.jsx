@@ -29,7 +29,7 @@ const LecturerDashboard = () => {
 	const removeProject = projectId => {
 		setProposals(prpsls => prpsls.filter(proj => proj.id !== projectId))
 		// remove entry from selectedTopics map
-		selectedTopics(selTops => {
+		setSelectedTopics(selTops => {
 			delete selTops[projectId]
 			return selTops
 		})

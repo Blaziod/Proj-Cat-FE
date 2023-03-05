@@ -20,6 +20,38 @@ export function useLoggedIn() {
 }
 
 /**
+ * A hook that only allows lecturers.
+ * This hook is used in pages that should only be visited by logged in users
+ */
+export function useLecturerLoggedIn() {
+	const [state] = useAppContext()
+
+	const navigate = useNavigate()
+
+	useLayoutEffect(() => {
+		if (!state.isLoggedIn || state.userType !== constants.userTypes.lecturer) {
+			navigate(constants.routes.index)
+		}
+	}, [state])
+}
+
+/**
+ * A hook that only allows students.
+ * This hook is used in pages that should only be visited by logged in users
+ */
+export function useStudentLoggedIn() {
+	const [state] = useAppContext()
+
+	const navigate = useNavigate()
+
+	useLayoutEffect(() => {
+		if (!state.isLoggedIn || state.userType !== constants.userTypes.student) {
+			navigate(constants.routes.index)
+		}
+	}, [state])
+}
+
+/**
  * A hook that prevents access to logged in users.
  * This hook is used in pages that should only be visited by logged out users.
  */
