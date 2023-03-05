@@ -1,0 +1,20 @@
+.dash-layout {
+	background-color: #efefef;
+	overflow: auto;
+	width: 100vw;
+	height: 100%;
+	color: #333;
+	text-align: left;
+	display: flex;
+	flex-direction: column;
+}
+
+.dash-header {
+	padding: 0 4rem;
+	background-color: white;
+}
+.dash-content {
+	padding: 0 4rem;
+	flex-grow: 1;
+    overflow: auto;
+}

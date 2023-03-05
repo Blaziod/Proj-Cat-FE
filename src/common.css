@@ -1,0 +1,28 @@
+.bg-warning {
+	background-color: orange;
+	color: white;
+}
+
+.bg-success {
+	background-color: rgb(127, 175, 127);
+	color: white;
+}
+
+.bg-error {
+	background-color: rgb(161, 1, 1);
+	color: white;
+}
+
+.text-sm {
+    font-size: small;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.tag {
+    display: inline-block;
+    border-radius: 1rem;
+    padding: 0.25rem 0.5rem;
+}

@@ -5,7 +5,13 @@ import * as apiservice from '../services/apiservice'
 import { useAppContext } from '../components/AppContext'
 import { DashboardLayout } from '../layouts/dashboard'
 
-export default function StudentDashboard(props) {
+const statusTextColorMap = {
+	approved: 'bg-success',
+	rejected: 'bg-error',
+	'pending approval': 'bg-warning'
+}
+
+export default function StudentDashboard() {
 	useLoggedIn()
 
 	const [appState] = useAppContext()
@@ -13,7 +19,7 @@ export default function StudentDashboard(props) {
 	const [proposalTopics, setProposalTopics] = useState([])
 
 	const getProposalStatusText = proposal => {
-		if (proposal.id === project.approvedTopic) return 'approved'
+		if (proposal.id === project?.approvedTopic?.id) return 'approved'
 		if (proposal.reviewed === true) return 'rejected'
 
 		return 'pending approval'
@@ -29,27 +35,31 @@ export default function StudentDashboard(props) {
 	}, [appState.user])
 
 	return (
-		<DashboardLayout>
-			<div className='auth-form-container'>
-				<h1 className='app-container'>Student Dashboard</h1>
-				<div className='app-container'>
-					<table>
-						<thead>
-							<tr>
-								<th>Project Topics</th>
-								<th>Project State</th>
-							</tr>
-						</thead>
-						<tbody>
-							{proposalTopics.map(proposal => (
+		<DashboardLayout title='Student Dashboard'>
+			<div>
+				<table>
+					<thead>
+						<tr>
+							<th>Project Topics</th>
+							<th>Project State</th>
+						</tr>
+					</thead>
+					<tbody>
+						{[...proposalTopics].reverse().map(proposal => {
+							const statusText = getProposalStatusText(proposal)
+							return (
 								<tr key={proposal.id}>
 									<td>{proposal.title}</td>
-									<td>{getProposalStatusText(proposal)}</td>
+									<td>
+										<span className={`${statusTextColorMap[statusText]} text-sm text-bold tag`}>
+											{statusText}
+										</span>
+									</td>
 								</tr>
-							))}
-						</tbody>
-					</table>
-				</div>
+							)
+						})}
+					</tbody>
+				</table>
 			</div>
 		</DashboardLayout>
 	)
