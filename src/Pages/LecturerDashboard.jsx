@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { useAppContext } from '../components/AppContext'
 import { useLoggedIn, useProtectionCondition } from '../hooks/useProtected'
+import { DashboardLayout } from '../layouts/dashboard'
 import * as apiservice from '../services/apiservice'
 import '../Table.css'
 import { constants } from '../utils'
@@ -72,8 +73,7 @@ const LecturerDashboard = () => {
 	}, [])
 
 	return (
-		<div className='app-container'>
-			<h2 className='app-container'>Lecturer Dashboard</h2>
+		<DashboardLayout title='Lecturer Dashboard'>
 			<table>
 				<thead>
 					<tr>
@@ -119,14 +119,14 @@ const LecturerDashboard = () => {
 									{' '}
 									Accept Selected{' '}
 								</button>
-								<p></p>
+                                {" "}
 								<button onClick={() => rejectAllTopics(projectDetails.id)}> Reject All </button>
 							</td>
 						</tr>
 					))}
 				</tbody>
 			</table>
-		</div>
+		</DashboardLayout>
 	)
 }
 
