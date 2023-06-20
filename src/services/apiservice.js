@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const baseDomainURL = "https://project-catalog.onrender.com";
-const baseDomainURL = "http://localhost:5000";
+const baseDomainURL = "https://project-catalog.onrender.com";
+// const baseDomainURL = "http://localhost:5000";
 
 const axiosInstance = axios.create({
   baseURL: `${baseDomainURL}/api/`,
