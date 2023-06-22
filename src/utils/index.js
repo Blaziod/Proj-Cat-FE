@@ -7,6 +7,8 @@ const routes = {
   lecturerLogin: "/lecturerlogin",
   lecturerDash: "/lecturerdashboard",
   studentDash: "/studentdashboard",
+  studentUpload: "/studentupload",
+  projectUpload: "/projectupload",
 };
 
 const userTypes = {

@@ -14,10 +14,16 @@ function Navbar() {
     <div className="section">
       <Link to={constants.routes.studentDash}>Dashboard</Link>
       <Link to={constants.routes.proposeTopic}>Add Topic</Link>
+      <Link to={constants.routes.studentUpload}>Upload Project</Link>
     </div>
   );
 
-  const renderLecturerNav = () => <div className="section"></div>;
+  const renderLecturerNav = () => (
+    <div className="section">
+      <Link to={constants.routes.lecturerDash}>Dashboard</Link>
+      <Link to={constants.routes.projectUpload}>View Projects</Link>
+    </div>
+  );
 
   const renderUserNavigation = () => {
     return appstate.userType === constants.userTypes.student
