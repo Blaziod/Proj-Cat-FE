@@ -63,3 +63,7 @@ export async function verifyTopic(topic) {
 export async function saveUpload(details) {
     return axiosInstance.post("/project/upload", details)
 }
+
+export async function getUploads() {
+  return axiosInstance.get("/project/upload")
+}
