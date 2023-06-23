@@ -60,11 +60,11 @@ export default function StudentUpload() {
 		<div className='auth-form-container'>
 			<h1 className='app-container'>Project Upload</h1>
 			<span className='bg-warning' style={{ padding: 10, borderRadius: 5, opacity: 0.4 }}>
-				Files can only be in pdf or DOC format and will be automatically linked to your approved topic. You
+				Files can only be in pdf format and will be automatically linked to your approved topic. You
 				cannot upload a project if a topic has not been approved for you.
 			</span>
 			<form className='login-form'>
-				<input type='file' onChange={e => setFile(e.target.files[0])} required />
+				<input type='file' accept='application/pdf' onChange={e => setFile(e.target.files[0])} required />
 			</form>
 			<button disabled={isUploading} type='submit' onClick={uploadFile}>
 				{isUploading ? "Uploading..." : "UPLOAD FILE"}
