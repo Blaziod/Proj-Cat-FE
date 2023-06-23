@@ -3,7 +3,8 @@ import { useLoggedIn } from '../hooks/useProtected'
 import { useAppContext } from '../components/AppContext'
 import * as apiservice from '../services/apiservice'
 import axios from 'axios'
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify'
+import * as filestack from 'filestack-js'
 
 export default function StudentUpload() {
 	useLoggedIn()
@@ -11,46 +12,48 @@ export default function StudentUpload() {
 	const [appState] = useAppContext()
 	const [file, setFile] = useState(null)
 	const [project, setProject] = useState(null)
+	const [isUploading, setIsUploading] = useState(false)
 
-	const uploadFile = () => {
-		if(project === null) return toast("Something went wrong! You may have been logged out.")
-
-		const formdata = new FormData()
-		formdata.append('doc', file)
-
-		var reader = new FileReader();
-		reader.onload = function(e) {
-			// upload directly from here and send the upload meta to the server
-			axios
-			.post('https://www.filestackapi.com/api/store/S3?key=A0K2ld8g3RVeE5nhJnUz7z', {
-				headers: { 'Content-Type': 'application/pdf' },
-				data: e.target.result // binary data
-			})
-			.then(res => res.data)
-			.then(data => apiservice.saveUpload({ ...data, projectId: project.id }))
-			.then((data) => toast("Upload complete!" + data.message))
-			.catch(err => {
-				console.log({ err })
-				toast("An error occurred while trying to upload your file. please try again")
-			})
-		};
-
-		reader.onerror = function(e) {
-			// error occurred
-			console.log('Error : ' + e.type);
-			toast("Cound not read file. Please try again")
-		};
-
-		reader.readAsBinaryString(file);
+	const fsUpload = async () => {
+		const client = filestack.init('A0K2ld8g3RVeE5nhJnUz7z')
+		return client.upload(file)
 	}
 
-	// get the project details 
+	const uploadFile = () => {
+		if (project === null) return toast('Something went wrong! You may have been logged out.')
+
+		if (!project.approvedTopic) return toast('No topics have been approved yet.')
+
+		fsUpload()
+			.then(res => {
+				console.log({ res })
+				apiservice
+					.saveUpload({ ...res, topicId: project.approvedTopic.id })
+					.then(data => toast('Upload complete!' + data.message))
+					.catch(err => {
+						console.log({ err })
+						toast('An error occurred while trying to save your upload. please try again')
+					})
+			})
+			.catch(err => {
+				console.log({ err })
+				toast('An error occurred while trying to upload your file. please try again')
+			})
+	}
+
+	// get the project details
 	useEffect(() => {
 		if (appState.user)
-			apiservice.getStudentProposals(appState.user.matricNo).then(data => {
-				const { topics, ...project } = data.body
-				setProject(project)
-			}).catch(err => toast("Unable to retrieve project information"))
+			apiservice
+				.getStudentProposals(appState.user.matricNo)
+				.then(data => {
+					const { topics, ...project } = data.body
+					setProject(project)
+				})
+				.catch(err => {
+					console.log({ err })
+					toast('Unable to retrieve project information')
+				})
 	}, [appState.user])
 
 	return (
@@ -63,8 +66,8 @@ export default function StudentUpload() {
 			<form className='login-form'>
 				<input type='file' onChange={e => setFile(e.target.files[0])} required />
 			</form>
-			<button type='submit' onClick={uploadFile}>
-				UPLOAD FILE
+			<button disabled={isUploading} type='submit' onClick={uploadFile}>
+				{isUploading ? "Uploading..." : "UPLOAD FILE"}
 			</button>
 		</div>
 	)
