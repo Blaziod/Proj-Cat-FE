@@ -1,6 +1,7 @@
 import axios from "axios";
 
 // const baseDomainURL = "https://project-catalog.onrender.com";
+// const baseDomainURL = "http://localhost:5000";
 const baseDomainURL = "http://localhost:5000";
 
 const axiosInstance = axios.create({
@@ -59,6 +60,6 @@ export async function verifyTopic(topic) {
   return axiosInstance.get("/topic/verify", { params: { topic } });
 }
 
-export async function uploadProject(project) {
-    return axiosInstance.post("/project/upload", project)
+export async function saveUpload(details) {
+    return axiosInstance.post("/project/upload", details)
 }
