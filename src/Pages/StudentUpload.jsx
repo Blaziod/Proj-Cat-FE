@@ -5,8 +5,8 @@ import * as apiservice from '../services/apiservice'
 import axios from 'axios'
 import { toast } from "react-toastify";
 
-export default function studentUpload() {
-	// useLoggedIn()
+export default function StudentUpload() {
+	useLoggedIn()
 
 	const [appState] = useAppContext()
 	const [file, setFile] = useState(null)
@@ -20,20 +20,19 @@ export default function studentUpload() {
 
 		var reader = new FileReader();
 		reader.onload = function(e) {
-			// binary data
-			console.log(e.target.result);
-				// upload directly from here and send the upload meta to the server
+			// upload directly from here and send the upload meta to the server
 			axios
 			.post('https://www.filestackapi.com/api/store/S3?key=A0K2ld8g3RVeE5nhJnUz7z', {
 				headers: { 'Content-Type': 'application/pdf' },
-				data: e.target.result
+				data: e.target.result // binary data
 			})
 			.then(res => res.data)
-			.then(data => {
-				return apiservice.saveUpload({ ...data, projectId: project.id })
+			.then(data => apiservice.saveUpload({ ...data, projectId: project.id }))
+			.then((data) => toast("Upload complete!" + data.message))
+			.catch(err => {
+				console.log({ err })
+				toast("An error occurred while trying to upload your file. please try again")
 			})
-			.then(({data}) => toast("Upload complete!" + data.message))
-			.catch(err => console.log({ err }))
 		};
 
 		reader.onerror = function(e) {
@@ -51,7 +50,7 @@ export default function studentUpload() {
 			apiservice.getStudentProposals(appState.user.matricNo).then(data => {
 				const { topics, ...project } = data.body
 				setProject(project)
-			})
+			}).catch(err => toast("Unable to retrieve project information"))
 	}, [appState.user])
 
 	return (
