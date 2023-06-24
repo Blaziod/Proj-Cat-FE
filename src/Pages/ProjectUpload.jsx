@@ -59,6 +59,7 @@ export default function ProjectUpload() {
 				<table>
 					<thead>
 						<tr>
+							<th>Matric No</th>
 							<th>Uploaded Project Files</th>
 							<th></th>
 						</tr>
@@ -67,9 +68,10 @@ export default function ProjectUpload() {
 						{uploads &&
 							(uploads.length > 0 ? uploads.map(upload => (
 								<tr key={upload.id}>
-									<td>{upload.topicId.title}</td>
+									<td>{upload.student.matricNo.toUpperCase()}</td>
+									<td>{upload.topic.title}</td>
 									<td>
-										<button onClick={() => download(upload.url, upload.topicId.title)}>
+										<button onClick={() => download(upload.url, upload.topic.title)}>
 											Download
 										</button>
 									</td>

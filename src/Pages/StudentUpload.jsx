@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useLoggedIn } from '../hooks/useProtected'
 import { useAppContext } from '../components/AppContext'
 import * as apiservice from '../services/apiservice'
-import axios from 'axios'
 import { toast } from 'react-toastify'
 import * as filestack from 'filestack-js'
 
@@ -24,12 +23,13 @@ export default function StudentUpload() {
 
 		if (!project.approvedTopic) return toast('No topics have been approved yet.')
 
+		setIsUploading(true)
 		fsUpload()
 			.then(res => {
 				console.log({ res })
 				apiservice
-					.saveUpload({ ...res, topicId: project.approvedTopic.id })
-					.then(data => toast('Upload complete!' + data.message))
+					.saveUpload({ ...res, student: appState.user.id, topic: project.approvedTopic.id })
+					.then(data => toast(`Upload complete! ${data.message}`))
 					.catch(err => {
 						console.log({ err })
 						toast('An error occurred while trying to save your upload. please try again')
@@ -38,6 +38,9 @@ export default function StudentUpload() {
 			.catch(err => {
 				console.log({ err })
 				toast('An error occurred while trying to upload your file. please try again')
+			})
+			.finally(() => {
+				setIsUploading(false)
 			})
 	}
 
@@ -60,14 +63,14 @@ export default function StudentUpload() {
 		<div className='auth-form-container'>
 			<h1 className='app-container'>Project Upload</h1>
 			<span className='bg-warning' style={{ padding: 10, borderRadius: 5, opacity: 0.4 }}>
-				Files can only be in pdf format and will be automatically linked to your approved topic. You
-				cannot upload a project if a topic has not been approved for you.
+				Files can only be in pdf format and will be automatically linked to your approved topic. You cannot
+				upload a project if a topic has not been approved for you.
 			</span>
 			<form className='login-form'>
 				<input type='file' accept='application/pdf' onChange={e => setFile(e.target.files[0])} required />
 			</form>
 			<button disabled={isUploading} type='submit' onClick={uploadFile}>
-				{isUploading ? "Uploading..." : "UPLOAD FILE"}
+				{isUploading ? 'Uploading...' : 'UPLOAD FILE'}
 			</button>
 		</div>
 	)
