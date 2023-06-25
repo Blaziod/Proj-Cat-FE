@@ -66,18 +66,26 @@ export default function ProjectUpload() {
 					</thead>
 					<tbody>
 						{uploads &&
-							(uploads.length > 0 ? uploads.map(upload => (
-								<tr key={upload.id}>
-									<td>{upload.student.matricNo.toUpperCase()}</td>
-									<td>{upload.topic.title}</td>
-									<td>
-										<button onClick={() => download(upload.url, upload.topic.title)}>
-											Download
-										</button>
-									</td>
+							(uploads.length > 0 ? (
+								uploads.map(upload => {
+									console.log({ upload })
+									return (
+										<tr key={upload.id}>
+											<td>{upload.student.matricNo.toUpperCase()}</td>
+											<td>{upload.topic.title}</td>
+											<td>
+												<button onClick={() => download(upload.url, upload.topic.title)}>
+													Download
+												</button>
+											</td>
+										</tr>
+									)
+								})
+							) : (
+								<tr>
+									<td>No projects have been uploaded yet!</td>
 								</tr>
-							)): <tr><td>No projects have been uploaded yet!</td></tr>)
-                            }
+							))}
 					</tbody>
 				</table>
 
